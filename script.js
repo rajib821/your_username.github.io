@@ -1,19 +1,11 @@
-document.getElementById('weather-form').addEventListener('submit', function(e) {
+document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const city = document.getElementById('city').value;
-    const apiKey = 'your_api_key';
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    // Display a success message
+    const formMessage = document.getElementById('form-message');
+    formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
+    formMessage.style.color = 'green';
 
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            const weatherResult = document.getElementById('weather-result');
-            weatherResult.innerHTML = `
-                <h2>${data.name}</h2>
-                <p>${data.weather[0].description}</p>
-                <p>Temperature: ${data.main.temp} °C</p>
-            `;
-        })
-        .catch(error => console.error('Error:', error));
+    // Optionally, clear the form
+    document.getElementById('contact-form').reset();
 });
